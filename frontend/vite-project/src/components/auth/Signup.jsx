@@ -89,7 +89,7 @@ const Signup = () => {
 
                     <div className='my-2'>
                         <Label>Full Name</Label>
-                        <Input type="text" name="fullname" value={input.fullname} onChange={changeEventHandler} placeholder="Aniket" />
+                        <Input type="text" name="fullname" value={input.fullname} onChange={changeEventHandler} placeholder="Name" />
                     </div>
 
                     <div className='my-4'>
@@ -99,7 +99,7 @@ const Signup = () => {
 
                     <div className='my-4'>
                         <Label>Phone Number</Label>
-                        <Input type="text" name="phoneNumber" value={input.phoneNumber} onChange={changeEventHandler} placeholder="9876543210" />
+                        <Input type="text" name="phoneNumber" value={input.phoneNumber} onChange={changeEventHandler} placeholder="1234567890" />
                     </div>
 
                     <div className='my-4'>
@@ -143,3 +143,4 @@ const Signup = () => {
 };
 
 export default Signup;
+ 

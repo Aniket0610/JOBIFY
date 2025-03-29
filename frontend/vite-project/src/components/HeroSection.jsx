@@ -4,6 +4,7 @@ import { Search } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSearchedQuery } from '@/redux/jobSlice';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 const HeroSection = () => {
   const [query, setQuery] = useState('');
@@ -19,6 +20,19 @@ const HeroSection = () => {
     <div className="relative text-center mt-8 py-12 overflow-hidden">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-50 to-blue-50 animate-gradient-x z-0"></div>
+
+      {/* Chatbot Avatar - Positioned Top Right & Clickable */}
+      <div 
+        className="absolute top-10 right-10 cursor-pointer z-50 pointer-events-auto"
+        onClick={() => navigate("/chatbot")}
+      >
+        <Avatar className="w-16 h-16 shadow-lg transition hover:scale-110">
+          <AvatarImage 
+            src="https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg" 
+            alt="Chatbot Avatar" 
+          />
+        </Avatar>
+      </div>
 
       <div className="relative z-10 flex flex-col gap-5">
         {/* Badge */}
@@ -41,7 +55,7 @@ const HeroSection = () => {
         <div className="flex w-full max-w-2xl shadow-sm border border-gray-200 pl-6 pr-2 rounded-full items-center gap-4 mx-auto bg-white hover:shadow-md transition-shadow duration-200">
           <input
             type="text"
-            placeholder="Find your dream jobs"
+            placeholder="Find your dream jobs(job role)"
             onChange={(e) => setQuery(e.target.value)}
             className="outline-none border-none w-full py-3 text-gray-700 placeholder-gray-400 text-sm md:text-base"
           />

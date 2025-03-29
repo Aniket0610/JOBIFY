@@ -4,33 +4,59 @@ const jobSlice = createSlice({
     name: "job",
     initialState: {
         allJobs: [],
-        allAdminJobs:[],
-        searchJobByText:"",
-        allAppliedJobs:[],
-        searchedQuery:"",
-        singleJob:null, 
+        allAdminJobs: [],
+        searchJobByText: "",
+        allAppliedJobs: [],
+        searchedQuery: "",
+        singleJob: null,
+        filters: {
+            location: [],
+            industry: [],
+            salary: [],
+        }
     },
     reducers: {
         // actions
         setAllJobs: (state, action) => {
             state.allJobs = action.payload;
         },
-        setSingleJob:(state,action) => {
+        setSingleJob: (state, action) => {
             state.singleJob = action.payload;
         },
-        setAllAdminJobs:(state,action) => {
+        setAllAdminJobs: (state, action) => {
             state.allAdminJobs = action.payload;
         },
-        setSearchJobByText:(state,action) => {
+        setSearchJobByText: (state, action) => {
             state.searchJobByText = action.payload;
         },
-        setAllAppliedJobs:(state,action) => {
+        setAllAppliedJobs: (state, action) => {
             state.allAppliedJobs = action.payload;
         },
-        setSearchedQuery:(state,action) => {
+        setSearchedQuery: (state, action) => {
             state.searchedQuery = action.payload;
+        },
+        setFilters: (state, action) => {
+            state.filters = action.payload;
+        },
+        resetFilters: (state) => {
+            state.filters = {
+                location: [],
+                industry: [],
+                salary: [],
+            };
         }
     }
 });
-export const { setAllJobs, setSingleJob,setAllAdminJobs,setSearchJobByText,setAllAppliedJobs, setSearchedQuery } = jobSlice.actions;
+
+export const { 
+    setAllJobs, 
+    setSingleJob, 
+    setAllAdminJobs, 
+    setSearchJobByText, 
+    setAllAppliedJobs, 
+    setSearchedQuery, 
+    setFilters, 
+    resetFilters 
+} = jobSlice.actions;
+
 export default jobSlice.reducer;
