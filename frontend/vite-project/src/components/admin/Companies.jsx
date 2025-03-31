@@ -24,7 +24,7 @@ const Companies = () => {
             <Navbar />
             
             {/* Chatbot Avatar - Positioned Near the Top Right */}
-            <div className="fixed top-20 right-10 cursor-pointer z-50" onClick={() => navigate("/chatbot")}> 
+            <div className="fixed top-20 right-10 cursor-pointer z-50" onClick={() => navigate("/chatbotr")}> 
                 <Avatar className="w-16 h-16 shadow-lg transition hover:scale-110">
                     <AvatarImage src="https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg" alt="Chatbot Avatar" />
                 </Avatar>

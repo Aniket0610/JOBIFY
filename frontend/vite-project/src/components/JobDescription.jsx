@@ -101,6 +101,10 @@ const JobDescription = () => {
               <span className="ml-2">{singleJob?.description}</span>
             </div>
             <div>
+              <span className="font-semibold">Requirements:</span>
+              <span className="ml-2">{singleJob?.requirements}</span>
+            </div>
+            <div>
               <span className="font-semibold">Experience:</span>
               <span className="ml-2">{singleJob?.experienceLevel} yrs</span>
             </div>

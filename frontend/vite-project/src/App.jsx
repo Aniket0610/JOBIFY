@@ -16,6 +16,7 @@ import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import UpdateJob from './components/admin/UpdateJob'
 import Chatbot from './components/Chatbot'
+import Chatbotr from './components/Chatbotr'
 
 
 
@@ -102,6 +103,14 @@ const appRouter = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Chatbot />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/chatbotr',
+    element: (
+      <ProtectedRoute>
+        <Chatbotr/>
       </ProtectedRoute>
     )
   }

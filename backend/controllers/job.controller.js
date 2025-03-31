@@ -45,7 +45,8 @@ Great news! A **new job opportunity** has just been posted on **JOBIFY**.
 📍 **Location:** ${location}  
 💰 **Salary:** Competitive  
 🎯 **Experience Required:** ${experience}  
-
+🔹 **Requirements:**  
+${requirements.split(",").map(req => `- ${req.trim()}`).join("\n")}
 Don't miss out! Explore this role and **apply now** to take your career to the next level.  
 
 👉 [Visit JOBIFY Now](https://your-jobify-platform.com)  
