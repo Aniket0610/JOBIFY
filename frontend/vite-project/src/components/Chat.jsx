@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE_URL } from "@/utils/constant";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
@@ -11,7 +12,7 @@ const Chat = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/chat/messages", {
+        const response = await axios.get(`${API_BASE_URL}/api/chat/messages`, {
           params: { userId, chatWithId },
         });
   
@@ -28,7 +29,7 @@ const Chat = () => {
   const handleSendMessage = async () => {
     if (message.trim()) {
       try {
-        const response = await axios.post("http://localhost:8000/api/chat/send", {
+        const response = await axios.post(`${API_BASE_URL}/api/chat/send`, {
           sender: userId,
           receiver: chatWithId,
           message,

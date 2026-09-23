@@ -1,63 +1,93 @@
-import React, { useEffect, useState } from 'react';
-import { Checkbox } from './ui/checkbox';
-import { Label } from './ui/label';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilters, resetFilters } from '@/redux/jobSlice';
-import { Button } from './ui/button';
+import React from "react";
+import { Checkbox } from "./ui/checkbox";
+import { Label } from "./ui/label";
+import { Button } from "./ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilters, resetFilters } from "@/redux/jobSlice";
 
 const filterData = [
   {
-    filterType: 'Location',
-    key: 'location',
-    options: ['Delhi NCR', 'Bangalore', 'Hyderabad', 'Pune', 'Mumbai'],
+    filterType: "Location",
+    key: "location",
+    options: ["Delhi NCR", "Bangalore", "Hyderabad", "Pune", "Mumbai"],
   },
   {
-    filterType: 'Industry',
-    key: 'industry',
-    options: ['Frontend Developer', 'Backend Developer', 'FullStack Developer', 'Graphic Designer', 'Fashion Designer'],
+    filterType: "Industry",
+    key: "industry",
+    options: [
+      "Frontend Developer",
+      "Backend Developer",
+      "FullStack Developer",
+      "Graphic Designer",
+      "Fashion Designer",
+    ],
   },
   {
-    filterType: 'Salary (LPA)',
-    key: 'salary',
-    options: ['3-9', '10-20', '21-45', '50-80'],
+    filterType: "Salary (LPA)",
+    key: "salary",
+    options: ["3-9", "10-20", "21-45", "50-80"],
   },
 ];
 
+const defaultFilters = {
+  location: [],
+  industry: [],
+  salary: [],
+};
+
 const FilterCard = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.job.filters); // Get filters from Redux
+
+  const filters = useSelector(
+    (state) => state.job?.filters || defaultFilters
+  );
 
   const handleCheckboxChange = (category, value) => {
+    const currentValues = filters[category];
+
     const updatedFilters = {
       ...filters,
-      [category]: filters[category].includes(value)
-        ? filters[category].filter((item) => item !== value)
-        : [...filters[category], value],
+      [category]: currentValues.includes(value)
+        ? currentValues.filter((item) => item !== value)
+        : [...currentValues, value],
     };
-    dispatch(setFilters(updatedFilters)); // Update Redux store
+
+    dispatch(setFilters(updatedFilters));
   };
 
-  // Reset filters
-  const resetAllFilters = () => {
+  const handleReset = () => {
     dispatch(resetFilters());
   };
 
   return (
-    <div className="w-full bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-      <h1 className="font-bold text-2xl text-gray-900 mb-6">Filter Jobs</h1>
-      <hr className="border-t-2 border-gray-100 mb-6" />
+    <div className="w-full bg-white rounded-lg border shadow-md p-6">
+      <h1 className="text-2xl font-bold mb-4">Filter Jobs</h1>
+
+      <hr className="mb-5" />
 
       {filterData.map((filter) => (
         <div key={filter.key} className="mb-6">
-          <h1 className="font-semibold text-lg text-gray-800 mb-4">{filter.filterType}</h1>
+          <h2 className="font-semibold text-lg mb-3">
+            {filter.filterType}
+          </h2>
+
           {filter.options.map((option) => (
-            <div key={option} className="flex items-center space-x-3 my-2">
+            <div
+              key={option}
+              className="flex items-center gap-3 mb-2"
+            >
               <Checkbox
                 id={`${filter.key}-${option}`}
                 checked={filters[filter.key].includes(option)}
-                onCheckedChange={() => handleCheckboxChange(filter.key, option)}
+                onCheckedChange={() =>
+                  handleCheckboxChange(filter.key, option)
+                }
               />
-              <Label htmlFor={`${filter.key}-${option}`} className="text-gray-700 cursor-pointer hover:text-gray-900">
+
+              <Label
+                htmlFor={`${filter.key}-${option}`}
+                className="cursor-pointer"
+              >
                 {option}
               </Label>
             </div>
@@ -65,15 +95,12 @@ const FilterCard = () => {
         </div>
       ))}
 
-      {/* Reset Button */}
-      <div className="mt-6">
-        <Button
-          onClick={resetAllFilters}
-          className="w-full bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200"
-        >
-          Reset Filters
-        </Button>
-      </div>
+      <Button
+        onClick={handleReset}
+        className="w-full bg-gray-700 hover:bg-gray-800"
+      >
+        Reset Filters
+      </Button>
     </div>
   );
 };

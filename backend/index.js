@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'http://localhost:5173',
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
     credentials:true
 }
 
@@ -38,7 +38,13 @@ app.use("/api/v1/chatbotr",chatbotrRoute);
 
 
 
-app.listen(PORT,()=>{
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT,()=>{
+        connectDB();
+        console.log(`Server running at port ${PORT}`);
+    });
+} else {
     connectDB();
-    console.log(`Server running at port ${PORT}`);
-})
+}
+
+export default app;

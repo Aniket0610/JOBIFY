@@ -11,19 +11,21 @@ const Jobs = () => {
 
   useEffect(() => {
     let filtered = allJobs;
-
+    console.log(filters)
     // Apply Location Filter
-    if (filters.location.length > 0) {
-      filtered = filtered.filter((job) => filters.location.includes(job.location));
+    if (filters?.location?.length > 0) {
+      filtered = filtered.filter((job) => filters.location.includes(job?.location));
+      console.log(filtered)
     }
+    console.log(filtered)
 
     // Apply Industry Filter
-    if (filters.industry.length > 0) {
+    if (filters?.industry?.length > 0) {
       filtered = filtered.filter((job) => filters.industry.includes(job.title));
     }
 
     // Apply Salary Filter
-    if (filters.salary.length > 0) {
+    if (filters?.salary?.length > 0) {
       filtered = filtered.filter((job) => {
         return filters.salary.some((range) => {
           const [minSalary, maxSalary] = range.split('-').map(Number);

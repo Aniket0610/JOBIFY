@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "./shared/Navbar";
+import { API_BASE_URL } from "@/utils/constant";
 
 const predefinedQuestions = [
   "How do I post a job?",
@@ -32,7 +33,7 @@ const Chatbot = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("http://localhost:8000/api/v1/chatbotr", { query });
+      const { data } = await axios.post(`${API_BASE_URL}/api/v1/chatbotr`, { query });
       setMessages([...newMessages, { text: data.response, sender: "bot" }]);
     } catch (error) {
       setMessages([...newMessages, { text: "Error getting response", sender: "bot" }]);
